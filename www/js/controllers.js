@@ -1,7 +1,10 @@
 angular.module('starter.controllers', [])
 
 .controller('ToDoListCtrl', function($scope,$ionicModal) {
-	$scope.toDoList = [{
+	
+	$scope.toDoList = (localStorage.getItem('toDoList')!== null) ? JSON.parse(localStorage.getItem('toDoList')) : 
+	
+	 [{
 			task: 'Shark wrangling',
 			didit: false
 		},{
@@ -18,13 +21,18 @@ angular.module('starter.controllers', [])
 			didit: false
 		},{
 			task: 'Escape a black hole',
-			didit: true
+			didit: false
 		}];
-
+	
+	
+	
 $scope.AddItem = function(data){
-	$scope.toDoList.push({task:data.newItem,status:'not done'});
+	$scope.toDoList.push({
+			task:data.newItem,
+			status:'not done'
+		});
 	 data.newItem = '';
-         $scope.closeModal();
+	 $scope.closeModal();
   };
   
 $ionicModal.fromTemplateUrl('modal.html', {
@@ -46,12 +54,17 @@ $ionicModal.fromTemplateUrl('modal.html', {
   });
   
   $scope.save = function() {
-	  console.log($scope.toDoList);
+	  $scope.newList = [];
 	  for(var x = 0; x < $scope.toDoList.length; x++){
-		  if($scope.toDoList[x].didit){
-			  $scope.toDoList.splice(x,1);
+		  if(!$scope.toDoList[x].didit){
+			  $scope.newList.push($scope.toDoList[x]);
 		  }
 	  }
+	  $scope.toDoList = $scope.newList;
+	  
+	  
+	  
+	  localStorage.setItem('toDoList', JSON.stringify($scope.newList));
   }
   
 });

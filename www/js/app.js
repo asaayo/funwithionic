@@ -15,5 +15,11 @@ angular.module('starter', ['ionic'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+	for( var x = 0; x < 6; x++){
+		$("#contentRow").add("div").addClass("col-33").attr({
+			"id" : "todo" + x,
+			"style" : "",
+		}).html("<input type=\"checkbox\" name=\"Groceries\"> Groceries</input>");
+	}
   });
 })

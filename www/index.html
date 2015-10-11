@@ -27,6 +27,7 @@
     <ion-pane>
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic To-Do! Starter</h1>
+		<div class="button"><button class="button" ng-click="openToDoAdder()">Add</button></div>
       </ion-header-bar>
       <ion-content>
 	  <ion-list ng-controller="todoController">
@@ -36,5 +37,15 @@
 	  </ion-list>
       </ion-content>
     </ion-pane>
+	<script id="openToDoAdder.html" type="text/ng-template">
+		<div class="modal">
+		<button class="button" ng-click="closeToDoAdder()">back</button>
+		<h1 class="title">Add Item</h1>
+		<form ng-submit="openToDoAdder(data)">
+		<input type="text" placeholder="To Do Item" ng-model="data.newItem"></input>
+		<button class="button" type="submit">Add</button>
+		</form>
+		</div>
+	</script>
   </body>
 </html>

@@ -40,9 +40,18 @@ $ionicModal.fromTemplateUrl('modal.html', {
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
-  //Cleanup the modal when we're done with it!
+
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+  
+  $scope.save = function() {
+	  console.log($scope.toDoList);
+	  for(var x = 0; x < $scope.toDoList.length; x++){
+		  if($scope.toDoList[x].didit){
+			  $scope.toDoList.splice(x,1);
+		  }
+	  }
+  }
   
 });

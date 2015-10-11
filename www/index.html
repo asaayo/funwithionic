@@ -24,13 +24,14 @@
             <h1 class="title">My ToDo List</h1>
 
             <div class="buttons">
+				<button class="button" ng-click="save()">Save</button>
                 <button class="button" ng-click="openModal()">Add</button>
             </div>
         </ion-header-bar>
         <ion-content>
             <ion-list>
                 <ion-item ng-repeat="item in toDoList">
-                    <input type="checkbox" ng-model="todo.didit" ng-checked={{todo.didit}}> {{item.task}}
+                    <input type="checkbox" ng-model="item.didit" ng-checked={{item.didit}}> {{item.task}}
                 </ion-item>
             </ion-list>
         </ion-content>
